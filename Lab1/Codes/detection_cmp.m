@@ -13,17 +13,20 @@ addpath data
 
 
 % Load input image
+addpath data
 image=imread('sunflower.jpg');
-
 if (size(image,3))
     image=rgb2gray(image);
 end
 
+finetuneFAST('sunflower.jpg', 30); 
+%%
 % Computing point features by using different detection strategies
 %
 % MISSING CODE: TUNE THE ARGUMENTS FOR every XXX
 features_fast=detectFASTFeatures(image);
-features_sift=detectSIFTFeatures(image);
+% features_sift=detectSIFTFeatures(image);
+features_sift=detectSURFFeatures(image);
 features_surf=detectSURFFeatures(image);
 features_kaze=detectKAZEFeatures(image);
 features_brisk=detectBRISKFeatures(image);
