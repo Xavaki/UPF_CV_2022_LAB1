@@ -17,20 +17,21 @@ function finetuneFAST(image_file, valuesPerParam)
    
     % We declare an array with all possible parameter combinations 
     % And compute the results via generateFineTuneTable
-    [~, image_name, ~] = fileparts(image_file); 
     MinQualityValues = 0:1/(valuesPerParam-1):1;
     MinContrastValues = 0:1/(valuesPerParam-1):1;
     MinContrastValues(1) = 0.001; 
     MinContrastValues(end) = 0.999; 
-    paramNames = {'MinQuality' 'MinContrast'}; % order MUST match here! 
-    paramCombinations = allcomb(MinQualityValues,MinContrastValues); 
+    paramNames = {'MinQuality' 'MinContrast'}; % order MUST match here!  
     defaults = [0.1, 0.2];
-    
-    handle = @detectFASTFeatures; 
+    handle = @detectFASTFeatures;
+    paramCombinations = allcomb(MinQualityValues,MinContrastValues);
+     
+    mkdir(append('results/',char(handle))) 
+    [~, image_name, ~] = fileparts(image_file); 
     resultsTable = generateFineTuneTable(image_file,handle, paramNames, paramCombinations, valuesPerParam, defaults);
     bestChoiceTable = selectBestParams(resultsTable, paramNames);
     saveImages(handle,image_file, bestChoiceTable,paramNames,valuesPerParam); 
-    writetable(bestChoiceTable, append('results/bestChoice_','FAST','_',image_name,'_',int2str(valuesPerParam),'.txt')); 
+    writetable(bestChoiceTable, append('results/',char(handle),'/','bestChoice_','_',image_name,'_',int2str(valuesPerParam),'.txt')); 
     
     
     

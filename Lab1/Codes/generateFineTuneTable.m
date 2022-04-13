@@ -68,5 +68,5 @@ function rt = generateFineTuneTable(image_file, functionHandle, paramNames, para
     % We convert results into a table and save it in a file
     rt = table(paramCombinations,numDetectedFeatures,meanScore,varianceLocation_m,...
         varianceLocation_n,meanScoreTop,varianceLocationTop_m, varianceLocationTop_n, computationTime, is_default);
-    writetable(rt,append('results/fineTuneTable_',char(functionHandle),'_',image_name,'_',int2str(valuesPerParam),'.txt'));
+    writetable(rt,append('results/',char(functionHandle),'/','fineTuneTable_',image_name,'_',int2str(valuesPerParam),'.txt'));
 end 

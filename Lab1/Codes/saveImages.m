@@ -12,14 +12,14 @@ function saveImages(functionHandle, image_file, bestChoiceTable, paramNames,valu
         plot(features.Location(:,1),features.Location(:,2),'*r','MarkerSize',4)
         hold off
         if pv == 1
-            title_text = append(char(functionHandle),'-','MAX');
+            type = 'MAX';
         elseif pv == 2
-            title_text = append(char(functionHandle),'-','MEAN');
+            type = 'MEAN';
         else
-            title_text = append(char(functionHandle),'-','DEFAULTARGS');
+            type = 'DEFAULTARGS';
         end 
-        title(title_text)
-        saveas(f,append('results/',title_text,'-',image_name,'-',int2str(valuesPerParam),'.png')); 
+        title(append(char(functionHandle),'-',type));
+        saveas(f,append('results/',char(functionHandle),'/',type,'_',image_name,'_',int2str(valuesPerParam),'.png')); 
     end 
 
 end
