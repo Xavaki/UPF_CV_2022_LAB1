@@ -31,6 +31,18 @@ finetuneSIFT('sunflower.jpg',10);
 % Computing point features by using different detection strategies
 %
 % MISSING CODE: TUNE THE ARGUMENTS FOR every XXX
+
+%%%%            % RESULTS ALREADY PRESENT IN results/directory %%%%%%%%%%%
+%finetuneFAST('sunflower.jpg', 10); 
+%finetuneSIFT('sunflower.jpg',10); 
+%finetuneSURF('sunflower.jpg', 10); 
+%finetuneKAZE('sunflower.jpg',10); 
+%finetuneBRISK('sunflower.jpg', 10);
+%finetuneORB('sunflower.jpg',20);
+%finetuneHarris('sunflower.jpg',20);
+%finetunreMSER('sunflower.jpg',10); 
+
+%%
 features_fast=detectFASTFeatures(image);
 features_sift=detectSIFTFeatures(image);
 features_surf=detectSURFFeatures(image);

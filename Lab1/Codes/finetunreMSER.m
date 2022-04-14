@@ -1,40 +1,54 @@
 function finetuneMSER(image_file, valuesPerParam)
 
-    %   'MinQuality'   A scalar Q, 0 <= Q <= 1, specifying the minimum accepted
-    %                  quality of corners as a fraction of the maximum corner
-    %                  metric value in the image. Larger values of Q can be
-    %                  used to remove erroneous corners.
-    % 
-    %                  Default: 0.1
+    %   regions = detectMSERFeatures(I) returns an MSERRegions object, regions,
+    %   containing region pixel lists and other information about MSER features
+    %   detected in a 2-D grayscale image I. detectMSERFeatures uses Maximally
+    %   Stable Extremal Regions (MSER) algorithm to find regions.
     %
-    %   'MinContrast'  A scalar T, 0 < T < 1, specifying the minimum intensity
-    %                  difference between a corner and its surrounding region,
-    %                  as a fraction of the maximum value of the image class.
-    %                  Increasing the value of T reduces the number of detected
-    %                  corners.
+    %   [..., cc] = detectMSERFeatures(I) optionally returns MSER regions in a
+    %   connected component structure. This output is useful for measuring
+    %   region properties using the <a href="matlab:help regionprops">regionprops</a> function. The connected
+    %   component structure, cc, contains four fields:
     %
-    %                  Default: 0.2
+    %       Connectivity   Connectivity of the MSER regions (default is 8)
+    %
+    %       ImageSize      Size of I.
+    %
+    %       NumObjects     Number of MSER regions in I.
+    %
+    %       PixelIdxList   1-by-NumObjects cell array where the kth element
+    %                      in the cell array is a vector containing the linear
+    %                      indices of the pixels in the kth MSER region.
+    %
+    %   regions = detectMSERFeatures(I,Name,Value) specifies additional
+    %   name-value pair arguments described below:
+    %
+    %   'ThresholdDelta'   Scalar value, 0 < ThresholdDelta <= 100, expressed
+    %                      as a percentage of the input data type range. This
+    %                      value specifies the step size between intensity
+    %                      threshold levels used in selecting extremal regions
+    %                      while testing for their stability. Decrease this
+    %                      value to return more regions. Typical values range
+    %                      from 0.8 to 4.
+    %
+    %                      Default: 2
+    %
+    %   'RegionAreaRange'  Two-element vector, [minArea maxArea], which
+    %                      specifies the size of the regions in pixels. This
+    %                      value allows the selection of regions containing
+    %                      pixels between minArea and maxArea, inclusive.
+    %
+    %                      Default: [30 14000]
+    %
+    %   'MaxAreaVariation' Positive scalar. Increase this value to return a
+    %                      greater number of regions at the cost of their
+    %                      stability. Stable regions are very similar in
+    %                      size over varying intensity thresholds. Typical
+    %                      values range from 0.1 to 1.0.
+    %
+    %                      Default: 0.25
    
-    % We declare an array with all possible parameter combinations 
-    % And compute the results via generateFineTuneTable
-    MinQuality = 0:1/(valuesPerParam-1):1;
-    MinContrast = 0:1/(valuesPerParam-1):1;
-    MinContrast(1) = 0.001; 
-    MinContrast(end) = 0.999; 
-    paramNames = {'MinQuality' 'MinContrast'}; % order MUST match here!  
-    defaults = [0.1, 0.2];
-    handle = @detectFASTFeatures;
-    paramCombinations = allcomb(MinQuality,MinContrast);
-     
-    mkdir(append('results/',char(handle))) 
-    [~, image_name, ~] = fileparts(image_file); 
-    resultsTable = generateFineTuneTable(image_file,handle, paramNames, paramCombinations, valuesPerParam, defaults);
-    bestChoiceTable = selectBestParams(resultsTable, paramNames);
-    saveImages(handle,image_file, bestChoiceTable,paramNames,valuesPerParam); 
-    writetable(bestChoiceTable, append('results/',char(handle),'/','bestChoice_','_',image_name,'_',int2str(valuesPerParam),'.txt')); 
     
-    
-    
-    
+    % not implemented due to time constraints
 
 end 

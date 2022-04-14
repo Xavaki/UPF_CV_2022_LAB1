@@ -1,0 +1,4 @@
+ContrastThreshold_EdgeThreshold_NumLayersInOctave_Sigma_1,ContrastThreshold_EdgeThreshold_NumLayersInOctave_Sigma_2,ContrastThreshold_EdgeThreshold_NumLayersInOctave_Sigma_3,ContrastThreshold_EdgeThreshold_NumLayersInOctave_Sigma_4,numDetectedFeatures,meanScore,varianceLocation_m,varianceLocation_n,meanScoreTop,varianceLocationTop_m,varianceLocationTop_n,computationTime,is_default
+0,3,1,1.88888888888889,72,0.0481100864708424,2590.12622070312,4093.99658203125,0.0437824949622154,358.463684082031,3788.705078125,0.010294935,0
+0,3,1,2,85,0.0472543053328991,2696.2734375,4234.13330078125,0.048723578453064,263.247467041016,4000.59497070312,0.010863658,0
+0.0133,10,3,1.6,238,0.0248043574392796,2530.31982421875,2918.01879882812,0.0266614966094494,21.8488235473633,1003.37078857422,0.020071974,1
