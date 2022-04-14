@@ -1,0 +1,4 @@
+Diffusion_Threshold_NumOctaves_NumScaleLevels_1,Diffusion_Threshold_NumOctaves_NumScaleLevels_2,Diffusion_Threshold_NumOctaves_NumScaleLevels_3,Diffusion_Threshold_NumOctaves_NumScaleLevels_4,numDetectedFeatures,meanScore,varianceLocation_m,varianceLocation_n,meanScoreTop,varianceLocationTop_m,varianceLocationTop_n,computationTime,is_default
+region,0.0001,1,4,391,0.000415371119743213,2490.07104492188,3308.35375976563,0.000339230027748272,1545.18981933594,42.5567893981934,0.0340027,0
+sharpedge,0.0001,4,3,555,0.000903159554582089,2542.27124023438,3520.82299804688,0.000283864123048261,1637.45300292969,202.244827270508,0.092373,0
+region,0.0001,3,4,734,0.00067895749816671,2504.00390625,3388.45947265625,0.000339230027748272,1545.18981933594,42.5567893981934,0.3073347,1

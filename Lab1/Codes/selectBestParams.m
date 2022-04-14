@@ -7,9 +7,14 @@ function bestChoiceTable = selectBestParams(T, paramNames)
     % variance of location of top x strongest features
     % (varianceLocationTop_m, varianceLocationTop_n)
     
+    
+    default = T(T.is_default == 1,:);
+    
+    
     % these meta-parameters might be dependant on the input image
     minNumFeatures = 50; 
-    minScore = 50; 
+    minScore = mean(T.meanScore); 
+    minScore = 0; 
     m = ...
         T.numDetectedFeatures >= minNumFeatures & ...
         T.meanScore >= minScore; 
@@ -18,7 +23,7 @@ function bestChoiceTable = selectBestParams(T, paramNames)
     
     bestChoice_MAX = maxBest(T);
     bestChoice_MEAN = meanBest(T);
-    default = T(T.is_default == 1,:);
+    
    
     % some post-processing to display results properly
     bestChoiceTable = [bestChoice_MAX;bestChoice_MEAN;default];

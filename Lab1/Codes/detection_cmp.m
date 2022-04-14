@@ -19,14 +19,20 @@ if (size(image,3))
     image=rgb2gray(image);
 end
 
-finetuneFAST('sunflower.jpg', 30); 
+%finetuneFAST('sunflower.jpg', 10); 
+finetuneSIFT('sunflower.jpg',10); 
+%finetuneSURF('sunflower.jpg', 10); 
+%finetuneKAZE('sunflower.jpg',10); 
+%finetuneBRISK('sunflower.jpg', 10);
+%finetuneORB('sunflower.jpg',20);
+%finetuneHarris('sunflower.jpg',20);
+%finetunreMSER('sunflower.jpg',10); 
 %%
 % Computing point features by using different detection strategies
 %
 % MISSING CODE: TUNE THE ARGUMENTS FOR every XXX
 features_fast=detectFASTFeatures(image);
-% features_sift=detectSIFTFeatures(image);
-features_sift=detectSURFFeatures(image);
+features_sift=detectSIFTFeatures(image);
 features_surf=detectSURFFeatures(image);
 features_kaze=detectKAZEFeatures(image);
 features_brisk=detectBRISKFeatures(image);

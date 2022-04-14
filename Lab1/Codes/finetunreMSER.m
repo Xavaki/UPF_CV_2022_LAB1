@@ -1,4 +1,4 @@
-function finetuneFAST(image_file, valuesPerParam)
+function finetuneMSER(image_file, valuesPerParam)
 
     %   'MinQuality'   A scalar Q, 0 <= Q <= 1, specifying the minimum accepted
     %                  quality of corners as a fraction of the maximum corner
@@ -17,18 +17,24 @@ function finetuneFAST(image_file, valuesPerParam)
    
     % We declare an array with all possible parameter combinations 
     % And compute the results via generateFineTuneTable
-    MinQualityValues = 0:1/(valuesPerParam-1):1;
-    MinContrastValues = 0:1/(valuesPerParam-1):1;
-    MinContrastValues(1) = 0.001; 
-    MinContrastValues(end) = 0.999; 
-    paramNames = {'MinQuality' 'MinContrast'}; % order MUST match here! 
-    paramCombinations = allcomb(MinQualityValues,MinContrastValues); 
+    MinQuality = 0:1/(valuesPerParam-1):1;
+    MinContrast = 0:1/(valuesPerParam-1):1;
+    MinContrast(1) = 0.001; 
+    MinContrast(end) = 0.999; 
+    paramNames = {'MinQuality' 'MinContrast'}; % order MUST match here!  
     defaults = [0.1, 0.2];
-    
-    resultsTable = generateFineTuneTable(image_file,@detectFASTFeatures, paramNames, paramCombinations, valuesPerParam, defaults);
-    
+    handle = @detectFASTFeatures;
+    paramCombinations = allcomb(MinQuality,MinContrast);
+     
+    mkdir(append('results/',char(handle))) 
+    [~, image_name, ~] = fileparts(image_file); 
+    resultsTable = generateFineTuneTable(image_file,handle, paramNames, paramCombinations, valuesPerParam, defaults);
     bestChoiceTable = selectBestParams(resultsTable, paramNames);
-    writetable(append('results/bestChoice_','FAST'
+    saveImages(handle,image_file, bestChoiceTable,paramNames,valuesPerParam); 
+    writetable(bestChoiceTable, append('results/',char(handle),'/','bestChoice_','_',image_name,'_',int2str(valuesPerParam),'.txt')); 
+    
+    
+    
     
 
 end 

@@ -8,5 +8,9 @@ function argcell = arguments2cell(I, paramNames, paramValues)
     for p = 2:2:numParamsTotal
         argcell{p} = char(paramNames(p/2)); 
         argcell{p+1} = paramValues(p/2); 
+        if isa(paramValues(p/2),'cell')
+            aux = paramValues(p/2); 
+            argcell{p+1} = aux{1};
+        end 
     end 
 end 

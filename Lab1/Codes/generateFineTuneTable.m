@@ -15,7 +15,7 @@ function rt = generateFineTuneTable(image_file, functionHandle, paramNames, para
 
     
     numTopFeatures = 20; 
-    numComb = size(paramCombinations, 1); 
+    numComb = size(paramCombinations, 1) 
     
     % We initialize metric arrays, to be converted to table later
     numDetectedFeatures = zeros(1,numComb); 
